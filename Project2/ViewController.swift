@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     // Creating new properties in a game
     var countries = [String]()
     var score = 0
+    var correctAnswer = 0
     
     
     override func viewDidLoad() {
@@ -39,9 +40,15 @@ class ViewController: UIViewController {
     
 // Created a new method called askQuestion
     func askQuestion() {
+        // the shuffle method is to randomize the order of the countries in the array
+        countries.shuffle()
+        correctAnswer = Int.random(in: 0...2)
+        
         button1.setImage(UIImage(named: countries[0]), for: .normal)
         button2.setImage(UIImage(named: countries[1]), for: .normal)
         button3.setImage(UIImage(named: countries[2]), for: .normal)
+        
+        title = countries[correctAnswer].uppercased()
     }
 }
 
