@@ -39,7 +39,7 @@ class ViewController: UIViewController {
 
     
 // Created a new method called askQuestion
-    func askQuestion() {
+    func askQuestion(action: UIAlertAction! = nil) {
         // the shuffle method is to randomize the order of the countries in the array
         countries.shuffle()
         correctAnswer = Int.random(in: 0...2)
@@ -50,5 +50,29 @@ class ViewController: UIViewController {
         
         title = countries[correctAnswer].uppercased()
     }
+    
+    @IBAction func buttonTapped(_ sender: UIButton) {
+        var title: String
+        // checking if the answer was correct or not
+        
+        
+        if sender.tag == correctAnswer {
+            title = "Correct"
+            score += 1
+        } else {
+            title = "Wrong"
+            score -= 1
+        }
+        
+        
+        let ac = UIAlertController(title: title, message:
+            "Your score is \(score)", preferredStyle: .alert)
+        
+        ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
+        
+        present(ac, animated: true)
+    }
+    
+     
 }
 
